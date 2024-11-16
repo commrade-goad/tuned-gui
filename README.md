@@ -1,4 +1,4 @@
-#TUNED-GUI
+# TUNED-GUI
 a simple raylib app to change tuned profile.
 
 ## BUILD
