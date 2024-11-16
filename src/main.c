@@ -14,8 +14,10 @@
 #define SELECTED_COLOR GetColor(0x89b4faff)
 #define HOVER_COLOR GetColor(0x89dcebff)
 #define BUFFER_SIZE 4096
-#define ONE_TIME_USE false
+#define ONE_TIME_USE true
 #define PROFILE_COUNT 3
+#define WINDOW_WIDTH 400
+#define WINDOW_HEIGTH 400
 
 #undef WHITE
 #define WHITE GetColor(0xcdd6f4ff)
@@ -23,12 +25,12 @@
 static char *sort[PROFILE_COUNT] = {
     "desktop",
     "balanced",
-    "powersave"
+    "powersave",
 };
 
 int handle_select(size_t current, int mode) {
-    if (current == 0 && mode < 0 ) return 2;
-    if (current >= 2 && mode > 0) return 0;
+    if (current == 0 && mode < 0 ) return PROFILE_COUNT - 1;
+    if (current >= PROFILE_COUNT - 1 && mode > 0) return 0;
     return current += mode;
 }
 
@@ -106,10 +108,10 @@ int main() {
         }
     }
 
-    const int w = 400;
-    const int h = 400;
+    const int w = WINDOW_WIDTH;
+    const int h = WINDOW_HEIGTH;
     Vector2 mouse_pos;
-    InitWindow(w, h, "Tuned GUI");
+    InitWindow(w, h, TITLE);
     SetTargetFPS(60);
     SetExitKey(KEY_Q);
 
