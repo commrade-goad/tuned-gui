@@ -11,13 +11,16 @@
 #define TITLE_SIZE 28
 #define PADDING 25
 #define ELEMENT_SIZE 100
+#define ELEMENT_FONT_SIZE 24
+#define ELEMENT_THICKNESS 3.0
+#define ELEMENT_SPACING 10
 #define SELECTED_COLOR GetColor(0x89b4faff)
 #define HOVER_COLOR GetColor(0x89dcebff)
 #define BUFFER_SIZE 4096
 #define ONE_TIME_USE true
 #define PROFILE_COUNT 3
 #define WINDOW_WIDTH 400
-#define WINDOW_HEIGTH 400
+#define WINDOW_HEIGHT 400
 
 #undef WHITE
 #define WHITE GetColor(0xcdd6f4ff)
@@ -109,7 +112,7 @@ int main() {
     }
 
     const int w = WINDOW_WIDTH;
-    const int h = WINDOW_HEIGTH;
+    const int h = WINDOW_HEIGHT;
     Vector2 mouse_pos;
     InitWindow(w, h, TITLE);
     SetTargetFPS(60);
@@ -129,9 +132,9 @@ int main() {
                 .x = PADDING,
                 .y = (float) TITLE_SIZE + (PADDING * 2) + (i * ELEMENT_SIZE),
                 .width = (float) GetScreenWidth() - (PADDING * 2),
-                .height = ELEMENT_SIZE - 10
+                .height = ELEMENT_SIZE - ELEMENT_SPACING
             };
-            float thickness = 3.0f;
+            float thickness = ELEMENT_THICKNESS;
             Color c = WHITE;
             Color txtc = WHITE;
 
@@ -143,10 +146,9 @@ int main() {
 
             if (selected_kb == i) {
                 DrawRectangleRec(new_rec, SELECTED_COLOR);
-                txtc = BACKGROUND_COLOR;
             }
             DrawRectangleLinesEx(new_rec, thickness, c);
-            DrawText(sort[i], PADDING * 2, new_rec.y + (new_rec.height/2.0) - (24 / 2.0), 24, txtc);
+            DrawText(sort[i], PADDING * 2, new_rec.y + (new_rec.height/2.0) - (ELEMENT_FONT_SIZE / 2.0), ELEMENT_FONT_SIZE, txtc);
         }
 
         EndDrawing();

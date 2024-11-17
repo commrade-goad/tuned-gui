@@ -53,13 +53,16 @@ all the option can be changed from this part in `src/main.c`.
 #define TITLE_SIZE 28
 #define PADDING 25
 #define ELEMENT_SIZE 100
+#define ELEMENT_FONT_SIZE 24
+#define ELEMENT_THICKNESS 3.0
+#define ELEMENT_SPACING 10
 #define SELECTED_COLOR GetColor(0x89b4faff)
 #define HOVER_COLOR GetColor(0x89dcebff)
 #define BUFFER_SIZE 4096
 #define ONE_TIME_USE true
 #define PROFILE_COUNT 3
 #define WINDOW_WIDTH 400
-#define WINDOW_HEIGTH 400
+#define WINDOW_HEIGHT 400
 
 #undef WHITE
 #define WHITE GetColor(0xcdd6f4ff)
