@@ -16,6 +16,7 @@
 #define ELEMENT_SPACING 10
 #define SELECTED_COLOR GetColor(0x89b4faff)
 #define HOVER_COLOR GetColor(0x89dcebff)
+#define ACTIVE_PROFILE_COLOR GetColor(0xa6e3a1ff)
 #define BUFFER_SIZE 4096
 #define ONE_TIME_USE true
 #define PROFILE_COUNT 3
@@ -103,10 +104,12 @@ int main() {
     cleanup_output(buffer, current_mode);
     size_t selected_kb = 0;
     int selected_m = -1;
+    int active_profile = -1;
 
     for (size_t i = 0; i < PROFILE_COUNT; i++) {
         if (strncmp(current_mode, sort[i], strlen(sort[i])) == 0) {
             selected_kb = i;
+            active_profile = i;
             break;
         }
     }
@@ -137,6 +140,10 @@ int main() {
             float thickness = ELEMENT_THICKNESS;
             Color c = WHITE;
             Color txtc = WHITE;
+
+            if (active_profile == i) {
+                txtc = ACTIVE_PROFILE_COLOR;
+            }
 
             if (CheckCollisionPointRec(mouse_pos, new_rec)) {
                 selected_m = i;
