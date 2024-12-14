@@ -6,7 +6,7 @@
 #include <string.h>
 #include <ctype.h>
 
-#define BACKGROUND_COLOR GetColor(0x1e1e2eff)
+#define BACKGROUND_COLOR GetColor(0x2e3440ff)
 #define TITLE "Tuned GUI"
 #define TITLE_SIZE 28
 #define PADDING 25
@@ -14,7 +14,7 @@
 #define ELEMENT_FONT_SIZE 24
 #define ELEMENT_THICKNESS 3.0
 #define ELEMENT_SPACING 10
-#define SELECTED_COLOR GetColor(0x89b4faff)
+#define SELECTED_COLOR GetColor(0x1e1e1eaa)
 #define HOVER_COLOR GetColor(0x89dcebff)
 #define ACTIVE_PROFILE_COLOR GetColor(0xa6e3a1ff)
 #define BUFFER_SIZE 4096
@@ -22,11 +22,14 @@
 #define PROFILE_COUNT 3
 #define WINDOW_WIDTH 400
 #define WINDOW_HEIGHT 400
+#define MAX_WORD_LEN 22
 
+// text use white
 #undef WHITE
 #define WHITE GetColor(0xcdd6f4ff)
 
 static char *sort[PROFILE_COUNT] = {
+    // "accelerator-performance",
     "desktop",
     "balanced",
     "powersave",
@@ -155,7 +158,12 @@ int main() {
                 DrawRectangleRec(new_rec, SELECTED_COLOR);
             }
             DrawRectangleLinesEx(new_rec, thickness, c);
-            DrawText(sort[i], PADDING * 2, new_rec.y + (new_rec.height/2.0) - (ELEMENT_FONT_SIZE / 2.0), ELEMENT_FONT_SIZE, txtc);
+
+            char mod_str[MAX_WORD_LEN + 1];
+            strncpy(mod_str, sort[i], MAX_WORD_LEN);
+            mod_str[MAX_WORD_LEN] = '\0';
+
+            DrawText(mod_str, PADDING * 2, new_rec.y + (new_rec.height/2.0) - (ELEMENT_FONT_SIZE / 2.0), ELEMENT_FONT_SIZE, txtc);
         }
 
         EndDrawing();
